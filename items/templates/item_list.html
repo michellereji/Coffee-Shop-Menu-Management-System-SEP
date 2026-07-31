@@ -1,0 +1,41 @@
+<DOCTYPE!.html>
+<html>  
+    <head>
+        <title>Coffee Shop Menu</title>
+    </head>
+    <body>
+        <h1>Coffee Shop Menu</h1>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'add_item' %}">Add Item</a>
+        <a href="{% url 'item_list' %}">View Items</a>
+
+
+        <table>
+            <th>
+                <tr>
+                <th>Sl. No.</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </th>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <a href="{% url 'edit_item' item.id %}">Edit</a> |
+                        <a href="{% url 'delete_item' item.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
